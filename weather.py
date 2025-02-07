@@ -14,8 +14,8 @@ if __name__ == "__main__":
     myGPS = gps.GPS()
     time.sleep(2)
     myGPS.update()
-    latitude = myGPS.lat
-    longitude = myGPS.lon
+    latitude = str(myGPS.lat)
+    longitude = str(myGPS.lon)
     weatherURL = f"https://api.weather.gov/points/{latitude},{longitude}"
     print (weatherURL)
     response = urlopen(weatherURL) 
