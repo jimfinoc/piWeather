@@ -1,6 +1,7 @@
+import time
+from gps3.agps3threaded import AGPS3mechanism
 class GPS:
     def __init__(self):
-        from gps3.agps3threaded import AGPS3mechanism
         # from time import sleep
         self.agps_thread = AGPS3mechanism()  # Instantiate AGPS3 Mechanisms
         self.agps_thread.stream_data()  # From localhost (), or other hosts, by example, (host='gps.ddns.net')
@@ -38,4 +39,5 @@ class GPS:
 
 if __name__ == "__main__":
     myGPS = GPS()
+    time.sleep(3)
     myGPS.update()
