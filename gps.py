@@ -36,6 +36,6 @@ class GPS:
     def alt(self):
         return self.agps_thread.data_stream.alt
 
-def __main__():
+if __name__ == "__main__":
     myGPS = GPS()
     myGPS.update()
