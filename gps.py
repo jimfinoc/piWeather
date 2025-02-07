@@ -39,5 +39,5 @@ class GPS:
 
 if __name__ == "__main__":
     myGPS = GPS()
-    time.sleep(3)
+    time.sleep(1)
     myGPS.update()
