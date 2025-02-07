@@ -21,7 +21,8 @@ class GPS:
 
     def lat(self):
         # return self.agps_thread.data_stream.lat
-        return '{}'.format(self.agps_thread.data_stream.lat)
+        lat = '{}'.format(self.agps_thread.data_stream.lat)
+        return lat
     def lon(self):
         # return self.agps_thread.data_stream.lon
         return '{}'.format(self.agps_thread.data_stream.lon)
