@@ -29,7 +29,11 @@ if __name__ == "__main__":
     data_json = json.loads(response.read()) 
     newURL = data_json['properties']['forecast']
     print(newURL)
+    print ()
     response = urlopen(newURL) 
     data_json = json.loads(response.read()) 
     secondNewURL = data_json['properties']['periods']
-    print(secondNewURL)
+    print(secondNewURL[0])
+    print ()
+    print(secondNewURL[1])
+    print ()
