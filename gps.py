@@ -20,10 +20,9 @@ class GPS:
         print('---------------------')
     
     def time(self):
-        return self.agps_thread.data_stream.time()
+        return '{}'.format(self.agps_thread.data_stream.lat)
 
     def lat(self):
-        # return self.agps_thread.data_stream.lat
         lat = '{}'.format(self.agps_thread.data_stream.lat)
         return lat
     def lon(self):
@@ -31,8 +30,8 @@ class GPS:
         return '{}'.format(self.agps_thread.data_stream.lon)
 
     def status(self):
-        return self.agps_thread.data_stream.status()
-
+        return '{}'.format(self.agps_thread.data_stream.status())
+        
     def timeOffset(self):
         return self.agps_thread.data_stream.ept()
 
