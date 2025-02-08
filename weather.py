@@ -12,7 +12,7 @@ import time
 
 class Weather:
     def __init__(self):
-        
+        pass
 
 if __name__ == "__main__":
     myGPS = gps.GPS()
