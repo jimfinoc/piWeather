@@ -33,7 +33,11 @@ if __name__ == "__main__":
     response = urlopen(newURL) 
     data_json = json.loads(response.read()) 
     secondNewURL = data_json['properties']['periods']
-    print(secondNewURL[0])
+    print(secondNewURL[0]['name'],": ",secondNewURL[0]['shortForecast'])
+    print("Temperature: ",secondNewURL[0]['temperature'],secondNewURL[0]['temperatureUnit'])
+    print("Wind: ",secondNewURL[0]['windSpeed'],secondNewURL[0]['windDirection'])
+    print("Details: ",secondNewURL[0]['windSpeed']
+
     print ()
-    print(secondNewURL[1])
-    print ()
+    # print(secondNewURL[1])
+    # print ()
