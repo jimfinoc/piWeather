@@ -11,6 +11,7 @@ class GPS:
         while True:
             if self.time() != "n/a":
                 break
+            time.sleep(.2)
         print('---------------------')
         print('Time:{}  '.format(self.agps_thread.data_stream.time))
         print('Lat:{}   '.format(self.agps_thread.data_stream.lat))

@@ -10,15 +10,19 @@ import time
   
 # print the json response 
 
+class Weather:
+    def __init__(self):
+        
+
 if __name__ == "__main__":
     myGPS = gps.GPS()
-    time.sleep(2)
     myGPS.update()
     # weatherURL = "https://api.weather.gov/points/{latitude},{longitude}".format(latitude = myGPS.lat,longitude = myGPS.lon)
     while True:
         weatherURL = 'https://api.weather.gov/points/{latitude},{longitude}'.format(latitude = myGPS.lat(),longitude = myGPS.lon())
         if weatherURL != "https://api.weather.gov/points/n/a,n/a":
             break
+        time.sleep(.2)
     # 'Number {0}: {1:{2}.2f}'.format(i, num, field_size)
     # 'Number {i}: {num:{field_size}.2f}'.format(i=i, num=num, field_size=field_size)
 
