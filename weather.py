@@ -15,7 +15,7 @@ if __name__ == "__main__":
     time.sleep(2)
     myGPS.update()
     # weatherURL = "https://api.weather.gov/points/{latitude},{longitude}".format(latitude = myGPS.lat,longitude = myGPS.lon)
-    weatherURL = f'https://api.weather.gov/points/{latitude},{longitude}'.format(latitude = myGPS.lat(),longitude = myGPS.lon())
+    weatherURL = 'https://api.weather.gov/points/{latitude},{longitude}'.format(latitude = myGPS.lat(),longitude = myGPS.lon())
     # 'Number {0}: {1:{2}.2f}'.format(i, num, field_size)
     # 'Number {i}: {num:{field_size}.2f}'.format(i=i, num=num, field_size=field_size)
 
