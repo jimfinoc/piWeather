@@ -15,7 +15,10 @@ if __name__ == "__main__":
     time.sleep(2)
     myGPS.update()
     # weatherURL = "https://api.weather.gov/points/{latitude},{longitude}".format(latitude = myGPS.lat,longitude = myGPS.lon)
-    weatherURL = 'https://api.weather.gov/points/{latitude},{longitude}'.format(latitude = myGPS.lat(),longitude = myGPS.lon())
+    while True:
+        weatherURL = 'https://api.weather.gov/points/{latitude},{longitude}'.format(latitude = myGPS.lat(),longitude = myGPS.lon())
+        if weatherURL != "https://api.weather.gov/points/n/a,n/a":
+            break
     # 'Number {0}: {1:{2}.2f}'.format(i, num, field_size)
     # 'Number {i}: {num:{field_size}.2f}'.format(i=i, num=num, field_size=field_size)
 
@@ -24,4 +27,8 @@ if __name__ == "__main__":
     print ()
     response = urlopen(weatherURL) 
     data_json = json.loads(response.read()) 
-    print(data_json['properties']['forecast']) 
+    newURL = data_json['properties']['forecast']
+    print(newURL)
+    response = urlopen(newURL) 
+    data_json = json.loads(response.read()) 
+    secondNewURL = data_json['properties']['periods']
