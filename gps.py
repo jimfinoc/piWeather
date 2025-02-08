@@ -9,7 +9,7 @@ class GPS:
     
     def update(self):
         while True:
-            if self.time() != "Time:n/a":
+            if self.time() != "n/a":
                 break
         print('---------------------')
         print('Time:{}  '.format(self.agps_thread.data_stream.time))
