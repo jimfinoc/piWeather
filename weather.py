@@ -1,50 +1,35 @@
-from urllib.request import urlopen 
-import json 
+from urllib.request import urlopen
+import json
 import gps
 import time
-  
-# store the response of URL 
-  
-# storing the JSON response  
-# from url in data 
-  
-# print the json response 
 
-class Weather:
-    def __init__(self):
-        pass
+def get_weather_url(lat, lon):
+    return f"https://api.weather.gov/points/{lat},{lon}"
+
+def fetch_json(url):
+    with urlopen(url) as response:
+        return json.loads(response.read())
 
 if __name__ == "__main__":
     myGPS = gps.GPS()
+    # time.sleep(2)
     myGPS.update()
-    # weatherURL = "https://api.weather.gov/points/{latitude},{longitude}".format(latitude = myGPS.lat,longitude = myGPS.lon)
+    
     while True:
-        weatherURL = 'https://api.weather.gov/points/{latitude},{longitude}'.format(latitude = myGPS.lat(),longitude = myGPS.lon())
-        if weatherURL != "https://api.weather.gov/points/n/a,n/a":
+        weatherURL = get_weather_url(myGPS.lat(), myGPS.lon())
+        if weatherURL != get_weather_url("n/a", "n/a"):
             break
-        time.sleep(.2)
-    # 'Number {0}: {1:{2}.2f}'.format(i, num, field_size)
-    # 'Number {i}: {num:{field_size}.2f}'.format(i=i, num=num, field_size=field_size)
 
-
-    print (weatherURL)
-    print ()
-    response = urlopen(weatherURL) 
-    data_json = json.loads(response.read()) 
-    newURL = data_json['properties']['forecast']
-    print(newURL)
-    print ()
-    response = urlopen(newURL) 
-    data_json = json.loads(response.read()) 
-    secondNewURL = data_json['properties']['periods']
-    print(secondNewURL[0]['name'],secondNewURL[0]['shortForecast'])
-    print("Temperature:",secondNewURL[0]['temperature'],secondNewURL[0]['temperatureUnit'])
-    print("Wind:",secondNewURL[0]['windSpeed'],secondNewURL[0]['windDirection'])
-    print("Details:",secondNewURL[0]['detailedForecast'])
-
-    print ()
-    print(secondNewURL[1]['name'],secondNewURL[1]['shortForecast'])
-    print("Temperature:",secondNewURL[1]['temperature'],secondNewURL[1]['temperatureUnit'])
-    print("Wind:",secondNewURL[1]['windSpeed'],secondNewURL[1]['windDirection'])
-    print("Details:",secondNewURL[1]['detailedForecast'])
-    print ()
+    print(weatherURL)
+    weather_data = fetch_json(weatherURL)
+    forecast_url = weather_data['properties']['forecast']
+    print(forecast_url)
+    
+    forecast_data = fetch_json(forecast_url)
+    periods = forecast_data['properties']['periods']
+    
+    for period in periods[:2]:  # Print details for the first two periods
+        print(f"{period['name']}: {period['shortForecast']}")
+        print(f"Temperature: {period['temperature']} {period['temperatureUnit']}")
+        print(f"Wind: {period['windSpeed']} {period['windDirection']}")
+        print(f"Details: {period['detailedForecast']}\n")

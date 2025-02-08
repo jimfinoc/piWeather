@@ -1,46 +1,60 @@
 import time
 from gps3.agps3threaded import AGPS3mechanism
+
 class GPS:
     def __init__(self):
-        # from time import sleep
-        self.agps_thread = AGPS3mechanism()  # Instantiate AGPS3 Mechanisms
-        self.agps_thread.stream_data()  # From localhost (), or other hosts, by example, (host='gps.ddns.net')
-        self.agps_thread.run_thread()  # Throttle time to sleep after an empty lookup, default '()' 0.2 two tenths of a second
+        self.agps_thread = AGPS3mechanism()
+        self.agps_thread.stream_data()
+        self.agps_thread.run_thread()
+        self.realData = False
+        self.update()
     
     def update(self):
-        while True:
-            if self.time() != "n/a":
-                break
-            time.sleep(.2)
+        startTime = time.time()
+        while self.time() == "n/a" and time.time() - startTime < 10:
+            time.sleep(0.2)
+            # print(time.time() - startTime )
+        if self.time() != "n/a":
+            self.realData = True
+            # self.print_gps_data()
+        else:
+            print ("Timed out after 10 seconds. Error loading gps data")
+        
+
+    def print_gps_data(self):
+        data = self.agps_thread.data_stream
         print('---------------------')
-        print('Time:{}  '.format(self.agps_thread.data_stream.time))
-        print('Lat:{}   '.format(self.agps_thread.data_stream.lat))
-        print('Lon:{}   '.format(self.agps_thread.data_stream.lon))
-        print('Speed:{} '.format(self.agps_thread.data_stream.speed))
-        print('Course:{}'.format(self.agps_thread.data_stream.track))
+        print(f'Time: {data.time}')
+        print(f'Lat: {data.lat}')
+        print(f'Lon: {data.lon}')
+        print(f'Speed: {data.speed}')
+        print(f'Course: {data.track}')
         print('---------------------')
-    
+
     def time(self):
-        return '{}'.format(self.agps_thread.data_stream.time)
+        return str(self.agps_thread.data_stream.time)
 
     def lat(self):
-        return '{}'.format(self.agps_thread.data_stream.lat)
+        return str(self.agps_thread.data_stream.lat)
 
     def lon(self):
-        return '{}'.format(self.agps_thread.data_stream.lon)
+        return str(self.agps_thread.data_stream.lon)
 
     def status(self):
-        return '{}'.format(self.agps_thread.data_stream.status)
+        return str(self.agps_thread.data_stream.status)
         
-    def timeOffset(self):
-        return '{}'.format(self.agps_thread.data_stream.ept)
+    def time_offset(self):
+        return str(self.agps_thread.data_stream.ept)
 
     def speed(self):
-        return '{}'.format(self.agps_thread.data_stream.speed)
+        return str(self.agps_thread.data_stream.speed)
 
     def alt(self):
-        return '{}'.format(self.agps_thread.data_stream.alt)
+        return str(self.agps_thread.data_stream.alt)
 
 if __name__ == "__main__":
-    myGPS = GPS()
-    myGPS.update()
+    try:
+        myGPS = GPS()
+        myGPS.print_gps_data()
+    except Exception as e:
+        print(f"An error occurred: {e}")
