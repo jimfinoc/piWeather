@@ -8,6 +8,9 @@ class GPS:
         self.agps_thread.run_thread()  # Throttle time to sleep after an empty lookup, default '()' 0.2 two tenths of a second
     
     def update(self):
+        while True:
+            if time != "Time:n/a":
+                break
         print('---------------------')
         print('Time:{}  '.format(self.agps_thread.data_stream.time))
         print('Lat:{}   '.format(self.agps_thread.data_stream.lat))
@@ -17,7 +20,7 @@ class GPS:
         print('---------------------')
     
     def time(self):
-        return self.agps_thread.data_stream.time
+        return self.agps_thread.data_stream.time()
 
     def lat(self):
         # return self.agps_thread.data_stream.lat
@@ -28,16 +31,16 @@ class GPS:
         return '{}'.format(self.agps_thread.data_stream.lon)
 
     def status(self):
-        return self.agps_thread.data_stream.status
+        return self.agps_thread.data_stream.status()
 
     def timeOffset(self):
-        return self.agps_thread.data_stream.ept
+        return self.agps_thread.data_stream.ept()
 
     def speed(self):
-        return self.agps_thread.data_stream.speed
+        return self.agps_thread.data_stream.speed()
 
     def alt(self):
-        return self.agps_thread.data_stream.alt
+        return self.agps_thread.data_stream.alt()
 
 if __name__ == "__main__":
     myGPS = GPS()
