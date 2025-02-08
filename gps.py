@@ -20,26 +20,25 @@ class GPS:
         print('---------------------')
     
     def time(self):
-        return '{}'.format(self.agps_thread.data_stream.lat)
+        return '{}'.format(self.agps_thread.data_stream.time)
 
     def lat(self):
-        lat = '{}'.format(self.agps_thread.data_stream.lat)
-        return lat
+        return '{}'.format(self.agps_thread.data_stream.lat)
+
     def lon(self):
-        # return self.agps_thread.data_stream.lon
         return '{}'.format(self.agps_thread.data_stream.lon)
 
     def status(self):
-        return '{}'.format(self.agps_thread.data_stream.status())
+        return '{}'.format(self.agps_thread.data_stream.status)
         
     def timeOffset(self):
-        return self.agps_thread.data_stream.ept()
+        return '{}'.format(self.agps_thread.data_stream.ept)
 
     def speed(self):
-        return self.agps_thread.data_stream.speed()
+        return '{}'.format(self.agps_thread.data_stream.speed)
 
     def alt(self):
-        return self.agps_thread.data_stream.alt()
+        return '{}'.format(self.agps_thread.data_stream.alt)
 
 if __name__ == "__main__":
     myGPS = GPS()
