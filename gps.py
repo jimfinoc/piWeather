@@ -41,7 +41,4 @@ class GPS:
 
 if __name__ == "__main__":
     myGPS = GPS()
-    time.sleep(2)
     myGPS.update()
-    print (myGPS.lat)
-    print (myGPS.lon)
