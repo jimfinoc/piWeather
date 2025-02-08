@@ -32,3 +32,4 @@ if __name__ == "__main__":
     response = urlopen(newURL) 
     data_json = json.loads(response.read()) 
     secondNewURL = data_json['properties']['periods']
+    print(secondNewURL)
