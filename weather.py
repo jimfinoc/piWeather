@@ -24,4 +24,4 @@ if __name__ == "__main__":
     print ()
     response = urlopen(weatherURL) 
     data_json = json.loads(response.read()) 
-    print(data_json['forecast']) 
+    print(data_json[properties['forecast']]) 
