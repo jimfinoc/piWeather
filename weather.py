@@ -36,11 +36,11 @@ if __name__ == "__main__":
     print(secondNewURL[0]['name'],secondNewURL[0]['shortForecast'])
     print("Temperature:",secondNewURL[0]['temperature'],secondNewURL[0]['temperatureUnit'])
     print("Wind:",secondNewURL[0]['windSpeed'],secondNewURL[0]['windDirection'])
-    print("Details:",secondNewURL[0]['windSpeed'])
+    print("Details:",secondNewURL[0]['detailedForecast'])
 
     print ()
     print(secondNewURL[1]['name'],secondNewURL[1]['shortForecast'])
     print("Temperature:",secondNewURL[1]['temperature'],secondNewURL[1]['temperatureUnit'])
     print("Wind:",secondNewURL[1]['windSpeed'],secondNewURL[1]['windDirection'])
-    print("Details:",secondNewURL[1]['windSpeed'])
+    print("Details:",secondNewURL[1]['detailedForecast'])
     print ()
