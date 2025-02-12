@@ -1,5 +1,6 @@
 import time
 import weather
+import os
 
 if __name__ == "__main__":
     timeHack = time.time()
