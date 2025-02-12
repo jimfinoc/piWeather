@@ -6,7 +6,7 @@ if __name__ == "__main__":
     timeHack = time.time()
     os.system('clear')
     timeHack = time.time()
-    prettyHack = time.strftime("%m/%d/%Y, %H:%M %Z",time.localtime(timeHack()))
+    prettyHack = time.strftime("%m/%d/%Y, %H:%M %Z",time.localtime(timeHack))
     print(prettyHack)
     weather.print_weather()
 
@@ -14,7 +14,7 @@ if __name__ == "__main__":
         if time.time() - timeHack > 180:
             os.system('clear')
             timeHack = time.time()
-            prettyHack = time.strftime("%m/%d/%Y, %H:%M %Z",time.localtime(timeHack()))
+            prettyHack = time.strftime("%m/%d/%Y, %H:%M %Z",time.localtime(timeHack))
             print(prettyHack)
             weather.print_weather()
 
