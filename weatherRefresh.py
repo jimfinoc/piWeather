@@ -16,8 +16,8 @@ if __name__ == "__main__":
         print("\033[1;1H", end="")
         prettyNow = time.strftime("%H:%M:%S %Z   \n%a %m %b %Y   ",time.localtime(time.time()))
         print(prettyNow)
-        print()
         if time.time() - timeHack > 180:
+            print()
             os.system('clear')
             timeHack = time.time()
             weather.print_weather()
