@@ -24,6 +24,7 @@ def print_weather():
     weather_data = fetch_json(weatherURL)
     forecast_url = weather_data['properties']['forecast']
     print(forecast_url)
+    print()
     
     forecast_data = fetch_json(forecast_url)
     periods = forecast_data['properties']['periods']
