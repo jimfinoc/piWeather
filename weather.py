@@ -10,7 +10,7 @@ def fetch_json(url):
     with urlopen(url) as response:
         return json.loads(response.read())
 
-if __name__ == "__main__":
+def print_weather():
     myGPS = gps.GPS()
     # time.sleep(2)
     myGPS.update()
@@ -33,3 +33,6 @@ if __name__ == "__main__":
         print(f"Temperature: {period['temperature']} {period['temperatureUnit']}")
         print(f"Wind: {period['windSpeed']} {period['windDirection']}")
         print(f"Details: {period['detailedForecast']}\n")
+
+if __name__ == "__main__":
+    print_weather()
