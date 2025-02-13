@@ -7,7 +7,7 @@ def prettyTime():
 
 
 if __name__ == "__main__":
-    refreshTime = 60
+    refreshTime = 300
     timeHack = time.time()
     os.system('clear')
     prettyNow = prettyTime()
