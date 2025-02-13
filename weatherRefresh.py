@@ -23,7 +23,6 @@ if __name__ == "__main__":
             weather.print_weather()
             print("\033[0;0H", end="")
         else:
-            print()
             prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
             print(prettyNow)
             print("\033[0;0H", end="")
