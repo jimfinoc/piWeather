@@ -24,7 +24,8 @@ def print_weather():
     weather_data = fetch_json(weatherURL)
     forecast_url = weather_data['properties']['forecast']
     print(forecast_url)
-    print()
+    asOfTime = time.strftime("Weather as of %H:%M:%S %Z on %m %b %Y   ",time.localtime(time.time()))
+    print(asOfTime)
     
     forecast_data = fetch_json(forecast_url)
     periods = forecast_data['properties']['periods']
