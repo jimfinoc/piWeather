@@ -3,7 +3,7 @@ import weather
 import os
 
 def prettyTime():
-    return time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
+    return time.strftime(" %H:%M:%S %Z on %a %m %b %Y   ",time.localtime(time.time()))
 
 
 if __name__ == "__main__":
