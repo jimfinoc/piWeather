@@ -7,6 +7,7 @@ def prettyTime():
 
 
 if __name__ == "__main__":
+    refreshTime = 60
     timeHack = time.time()
     os.system('clear')
     prettyNow = prettyTime()
@@ -17,7 +18,7 @@ if __name__ == "__main__":
 
     while True:
         time.sleep(1)
-        if time.time() - timeHack > 30:
+        if time.time() - timeHack > refreshTime:
             os.system('clear')
             print("\033[0;0H", end="")
             prettyNow = prettyTime()
