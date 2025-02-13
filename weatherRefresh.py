@@ -14,15 +14,17 @@ if __name__ == "__main__":
 
     while True:
         time.sleep(1)
-        prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
-        print(prettyNow)
-        print("\033[1;1H", end="")
         if time.time() - timeHack > 180:
-            print(prettyNow)
             os.system('clear')
+            prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
+            print(prettyNow)
             print()
             timeHack = time.time()
             weather.print_weather()
-
+            print("\033[1;1H", end="")
+        else:
+            prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
+            print(prettyNow)
+            print("\033[1;1H", end="")
 
 
