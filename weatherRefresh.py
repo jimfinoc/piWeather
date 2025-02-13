@@ -2,10 +2,14 @@ import time
 import weather
 import os
 
+def prettyTime():
+    return time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
+
+
 if __name__ == "__main__":
     timeHack = time.time()
     os.system('clear')
-    prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
+    prettyNow = prettyTime()
     print(prettyNow)
     print()
     weather.print_weather()
@@ -16,14 +20,14 @@ if __name__ == "__main__":
         if time.time() - timeHack > 180:
             os.system('clear')
             print("\033[0;0H", end="")
-            prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
+            prettyNow = prettyTime()
             print(prettyNow)
             print()
             timeHack = time.time()
             weather.print_weather()
             print("\033[0;0H", end="")
         else:
-            prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
+            prettyNow = prettyTime()
             print(prettyNow)
             print("\033[0;0H", end="")
 
