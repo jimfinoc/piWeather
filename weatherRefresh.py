@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     while True:
         time.sleep(1)
-        if time.time() - timeHack > 180:
+        if time.time() - timeHack > 30:
             os.system('clear')
             print("\033[0;0H", end="")
             prettyNow = prettyTime()
