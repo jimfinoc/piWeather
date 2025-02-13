@@ -5,7 +5,6 @@ import os
 if __name__ == "__main__":
     timeHack = time.time()
     os.system('clear')
-    print()
     prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
     print(prettyNow)
     print()
@@ -17,7 +16,6 @@ if __name__ == "__main__":
         if time.time() - timeHack > 180:
             os.system('clear')
             print("\033[0;0H", end="")
-            print()
             prettyNow = time.strftime(" %H:%M:%S %Z   \n %a %m %b %Y   ",time.localtime(time.time()))
             print(prettyNow)
             print()
