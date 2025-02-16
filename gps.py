@@ -2,6 +2,8 @@ import time
 from gps3.agps3threaded import AGPS3mechanism
 from dotenv import load_dotenv
 import os
+import redis
+load_dotenv(".env")
 
 class GPS:
     def __init__(self):
