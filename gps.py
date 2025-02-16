@@ -65,7 +65,7 @@ class GPS:
                 sleep(.1)
             else:
                 break
-        print('---------------------'
+        print('---------------------')
         print(f'Time: {data.time}')
         print(f'Lat: {data.lat}')
         print(f'Lon: {data.lon}')
