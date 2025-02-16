@@ -86,8 +86,9 @@ class GPS:
 
         My_location_json_string = json.dumps(My_location)
         try:
-            result = r.set('My_location',My_location_json_string)
-            print("database updated")
+            my_key = 'My_location'
+            result = r.set(my_key,My_location_json_string)
+            print(f"database updated with key {my_key}")
         except:
             print(f"error writing to the database: {redis_database_name}")
         print('---------------------')
