@@ -3,6 +3,7 @@ from gps3.agps3threaded import AGPS3mechanism
 from dotenv import load_dotenv
 import os
 import redis
+import json
 load_dotenv(".env")
 
 class GPS:
@@ -104,6 +105,8 @@ class GPS:
 if __name__ == "__main__":
     try:
         myGPS = GPS()
-        myGPS.print_gps_data()
+        # myGPS.print_gps_data()
+        mygps.saveToDatabase()
+
     except Exception as e:
         print(f"An error occurred: {e}")
