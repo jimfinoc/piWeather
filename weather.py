@@ -1,4 +1,5 @@
 from urllib.request import urlopen
+from dotenv import load_dotenv
 import json
 import gps
 import time
@@ -11,15 +12,46 @@ def fetch_json(url):
         return json.loads(response.read())
 
 def print_weather():
-    myGPS = gps.GPS()
-    # time.sleep(2)
-    myGPS.update()
     
     while True:
-        weatherURL = get_weather_url(myGPS.lat(), myGPS.lon())
-        if weatherURL != get_weather_url("n/a", "n/a"):
+        lat = 'n/a'
+        lon = 'n/a'
+        try:
+            print('try gps.GPS()')
+            myGPS = gps.GPS()
+            lat = myGPS.lat()
+            lon = myGPS.lon()
+            # myGPS.update()
+            print (f"Lat: {lat}, Lon: {lon}")
+            print ("gps data loaded from function")
+        except:
+            print("error getting database from the gps source")
+            try:
+                print('try loading file .My_location.json')
+                filename = ".My_location.json"
+                with open(filename, "r") as file:
+                    My_location = json.load(file)
+                lat = My_location['Lat']
+                lon = My_location['Lon']
+                print ("gps data loaded from file")
+            except:
+                print ("error getting data from file")
+                try:
+                    print('redis database')               
+                    r = redis.Redis(db=0,host=os.getenv("redis_database_name"),port=os.getenv("redis_database_port"),password=os.getenv("redis_database_password"))
+                
+                    My_location_json_string = r.get('My_location')
+                    My_location = json.loads(My_location_json_string)
+                    lat = My_location['Lat']
+                    lon = My_location['Lon']
+                except:
+                    print ("error getting data from database")
+        if lat != 'n/a' and lon != 'n/a':
+            print ("Lat:",lat)
+            print ("Lon:",lon)
             break
 
+    weatherURL = get_weather_url(lat,lon)
     print(weatherURL)
     weather_data = fetch_json(weatherURL)
     forecast_url = weather_data['properties']['forecast']
