@@ -106,7 +106,7 @@ if __name__ == "__main__":
     try:
         myGPS = GPS()
         # myGPS.print_gps_data()
-        mygps.saveToDatabase()
+        myGPS.saveToDatabase()
 
     except Exception as e:
         print(f"An error occurred: {e}")
