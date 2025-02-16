@@ -1,5 +1,7 @@
 import time
 from gps3.agps3threaded import AGPS3mechanism
+from dotenv import load_dotenv
+import os
 
 class GPS:
     def __init__(self):
@@ -51,6 +53,51 @@ class GPS:
 
     def alt(self):
         return str(self.agps_thread.data_stream.alt)
+
+    def saveToDatabase(self):
+        data = self.agps_thread.data_stream
+        c = 0
+        while True:
+            if data.time == "n/a":
+                c += 1
+                if c > 100:
+                    quit()
+                sleep(.1)
+            else:
+                break
+        print('---------------------'
+        print(f'Time: {data.time}')
+        print(f'Lat: {data.lat}')
+        print(f'Lon: {data.lon}')
+        print(f'Speed: {data.speed}')
+        print(f'Course: {data.track}')
+        print('---------------------')
+        r = redis.Redis(db=0,host=os.getenv("redis_database_name"),port=os.getenv("redis_database_port"),password=os.getenv("redis_database_password"))
+        My_location = {
+            'Time' : data.time,
+            'Lat' : data.lat,
+            'Lon': data.lon,
+            'Speed': data.speed,
+            'Course': data.track
+        }
+
+        My_location_json_string = json.dumps(My_location)
+        try:
+            result = r.set('My_location',My_location_json_string)
+            print("database updated")
+        except:
+            print(f"error writing to the database: {redis_database_name}")
+        print('---------------------')
+        
+        filename = ".My_location.json"
+        try:
+            with open(filename, "w") as file:
+                json.dump(My_location, file, indent=4)
+            print(f"location saved to disk at {filename}")
+        except:
+            print(f"error writing to file {filename}")
+        print('---------------------')
+
 
 if __name__ == "__main__":
     try:
