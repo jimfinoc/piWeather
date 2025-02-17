@@ -19,7 +19,7 @@ window.title("Analog Clock")
 
 canvas = tk.Canvas(window, width=x_geometry, height=y_geometry)
 canvas.pack()
-refresh = 1
+refresh = 500
 def update_time():
     cx0 = padx # x coordinate of the top-left corner of the bounding box
     cy0 = pady  # y coordinate of the top-left corner of the bounding box
