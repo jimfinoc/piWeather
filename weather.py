@@ -1,7 +1,6 @@
-from urllib.request import urlopen
+from urllib.request import urlopen 
 from dotenv import load_dotenv
 import json
-import gps
 import time
 import os
 import redis
@@ -14,11 +13,11 @@ def fetch_json(url):
         return json.loads(response.read())
 
 def print_weather():
-    
     while True:
         lat = 'n/a'
         lon = 'n/a'
         try:
+            import gps
             print('-try gps.GPS()')
             myGPS = gps.GPS()
             lat = myGPS.lat()
@@ -64,9 +63,19 @@ def print_weather():
             break
 
     weatherURL = get_weather_url(lat,lon)
-    print(weatherURL)
+    # print()
+    # print("weatherURL")
+    # print(weatherURL)
+    # print()
     weather_data = fetch_json(weatherURL)
+    # print()
+    # print("weather_data")
+    # print(weather_data)
+    # print()
+
     forecast_url = weather_data['properties']['forecast']
+    print()
+    print("forecast_url")
     print(forecast_url)
     asOfTime = time.strftime("Weather as of %H:%M:%S %Z on %m %b %Y   ",time.localtime(time.time()))
     print(asOfTime)

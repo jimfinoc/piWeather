@@ -2,11 +2,6 @@ import tkinter as tk
 import datetime
 import math
 
-# def update_time():
-#     current_time = time.strftime("%H:%M:%S")
-#     label.config(text=current_time)
-#     label.after(1000, update_time)
-
 window = tk.Tk()
 my_geometry = 400
 x_geometry = my_geometry
