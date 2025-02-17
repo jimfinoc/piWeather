@@ -8,20 +8,28 @@ import math
 #     label.after(1000, update_time)
 
 window = tk.Tk()
-window.geometry("480x480")
+my_geometry = 400
+x_geometry = my_geometry
+y_geometry = my_geometry
+pad = 10
+padx = pad
+pady = pad
+window.geometry(f"{x_geometry}x{y_geometry}")
 window.title("Analog Clock")
 
-canvas = tk.Canvas(window, width=480, height=480)
+canvas = tk.Canvas(window, width=x_geometry, height=y_geometry)
 canvas.pack()
 refresh = 1
 def update_time():
-    cx0 = 5 # x coordinate of the top-left corner of the bounding box
-    cy0 = 5  # y coordinate of the top-left corner of the bounding box
-    cx1 = 475  # x coordinate of the bottom-right corner of the bounding box
-    cy1 = 475  # y coordinate of the bottom-right corner of the bounding box
+    cx0 = padx # x coordinate of the top-left corner of the bounding box
+    cy0 = pady  # y coordinate of the top-left corner of the bounding box
+    cx1 = x_geometry - padx  # x coordinate of the bottom-right corner of the bounding box
+    cy1 = y_geometry - pady # y coordinate of the bottom-right corner of the bounding box
 
-    lx0 = (cx1 - cx0)/2  # Starting coordinates
-    ly0 = (cy1 - cy0)/2  # Starting coordinates
+    # lx0 = (cx1 - cx0)/2  # Starting coordinates
+    lx0 = (x_geometry)/2  # Starting coordinates
+    # ly0 = (cy1 - cy0)/2  # Starting coordinates
+    ly0 = (y_geometry)/2  # Starting coordinates
 
     now = datetime.datetime.now()
     # print("now",now)
@@ -32,15 +40,15 @@ def update_time():
     second = now.second
     # print("second", second)
     minuteAngle = math.pi/2 - 2*math.pi*((minute+second/60)/60)
-    mx1 = lx0 + 200 * math.cos(-minuteAngle)# Ending coordinates
-    my1 = ly0 + 200 * math.sin(-minuteAngle) # Ending coordinates
+    mx1 = lx0 + (my_geometry/2-pad*5) * math.cos(-minuteAngle)# Ending coordinates
+    my1 = ly0 + (my_geometry/2-pad*5) * math.sin(-minuteAngle) # Ending coordinates
     secondAngle = math.pi/2 - 2*math.pi*(second/60)
-    sx1 = lx0 + 200 * math.cos(-secondAngle)# Ending coordinates
-    sy1 = ly0 + 200 * math.sin(-secondAngle) # Ending coordinates
+    sx1 = lx0 + (my_geometry/2-pad*5) * math.cos(-secondAngle)# Ending coordinates
+    sy1 = ly0 + (my_geometry/2-pad*5) * math.sin(-secondAngle) # Ending coordinates
     hourAngle = math.pi/2 - 2*math.pi*((hour + (( minute + second/60 ) / 60))/12)
     # hourAngle = math.pi/2 - 2*math.pi*(hour /12)
-    hx1 = lx0 + 150 * math.cos(-hourAngle)# Ending coordinates
-    hy1 = ly0 + 150 * math.sin(-hourAngle) # Ending coordinates
+    hx1 = lx0 + 3/4*(my_geometry/2-pad*2) * math.cos(-hourAngle)# Ending coordinates
+    hy1 = ly0 + 3/4*(my_geometry/2-pad*2) * math.sin(-hourAngle) # Ending coordinates
 
 
 
