@@ -3,6 +3,9 @@ import datetime
 import math
 import json
 from urllib.request import urlopen 
+import redis
+from dotenv import load_dotenv
+import os
 
 
 
@@ -32,9 +35,6 @@ def return_location():
     lat = 'n/a'
     lon = 'n/a'
     try:
-        import redis
-        from dotenv import load_dotenv
-        import os
         # print('-try redis database')
         load_dotenv(".env")
         print ("redis_database_name")
