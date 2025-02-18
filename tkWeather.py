@@ -46,10 +46,14 @@ def return_location():
         r = redis.Redis(db=0,host=os.getenv("redis_database_name"),port=os.getenv("redis_database_port"),password=os.getenv("redis_database_password"))
         My_location_json_string = r.get('My_location')
         My_location = json.loads(My_location_json_string)
-        # print("My_location")
-        # print(My_location)
+        print("My_location")
+        print(My_location)
         lat = My_location['Lat']
         lon = My_location['Lon']
+        print("lat")
+        print(lat)
+        print("lon")
+        print(lon)
     except:
         pass
     return (lat,lon)
