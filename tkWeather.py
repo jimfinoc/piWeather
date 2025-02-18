@@ -21,7 +21,11 @@ def get_weather_url(lat, lon):
     return f"https://api.weather.gov/points/{lat},{lon}"
 
 def fetch_json(url):
+    print("url")
+    print(url)
     with urlopen(url) as response:
+        print("response")
+        print(response)
         return json.loads(response.read())
 
 def return_location():
