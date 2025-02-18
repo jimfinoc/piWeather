@@ -3,7 +3,7 @@ import datetime
 import math
 
 window = tk.Tk()
-my_geometry = 400
+my_geometry = 375
 x_geometry = my_geometry
 y_geometry = my_geometry
 pad = 10

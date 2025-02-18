@@ -10,7 +10,7 @@ import os
 
 
 window = tk.Tk()
-my_geometry = 400
+my_geometry = 375
 afterTime = 5 * 60 * 1000 # time is in milliseconds
 x_geometry = my_geometry
 y_geometry = my_geometry
@@ -93,10 +93,10 @@ def return_weather():
 
 # data = return_weather()
 label = {}
-label['location'] = tk.Label(window, font=("Arial", 30), text="")
-label['period_1'] = tk.Label(window, font=("Arial", 20), text="")
-label['period_2'] = tk.Label(window, font=("Arial", 10), text="")
-label['period_3'] = tk.Label(window, font=("Arial", 10), text="")
+label['location'] = tk.Label(window, font=("Arial", 25), text="")
+label['period_1'] = tk.Label(window, font=("Arial", 18), text="")
+label['period_2'] = tk.Label(window, font=("Arial", 12), text="")
+label['period_3'] = tk.Label(window, font=("Arial", 12), text="")
 
 def update_labels():
     data = return_weather()
