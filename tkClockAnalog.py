@@ -14,7 +14,7 @@ window.title("Analog Clock")
 
 canvas = tk.Canvas(window, width=x_geometry, height=y_geometry)
 canvas.pack()
-refresh = 500
+refresh = 1000
 def update_time():
     cx0 = padx # x coordinate of the top-left corner of the bounding box
     cy0 = pady  # y coordinate of the top-left corner of the bounding box
@@ -56,7 +56,7 @@ def update_time():
     # minuteEnd = canvas.create_oval(mx1-radius/3, my1-radius/3, mx1+radius/3, my1+radius/3, outline="white", fill="white")
     # hourEnd = canvas.create_oval(hx1-radius, hy1-radius, hx1+radius, hy1+radius, outline="white", fill="white")
     # hourLine.after(15,update_time)
-    # window.after(refresh,update_time)
+    window.after(refresh,update_time)
 
 
 
