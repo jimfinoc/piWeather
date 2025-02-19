@@ -85,10 +85,12 @@ def return_weather():
     periods = forecast_data['properties']['periods']    
     # print()
     for period in periods[:1]:  # Print details for the first two periods
+        print(datetime.datetime.now())
         print(f"{period['name']}: {period['shortForecast']}")
         print(f"Temperature: {period['temperature']} {period['temperatureUnit']}")
         print(f"Wind: {period['windSpeed']} {period['windDirection']}")
         print(f"Details: {period['detailedForecast']}\n")
+        print()
     return (city,state,periods[0],periods[1],periods[2])
 
 # data = return_weather()
