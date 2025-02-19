@@ -96,6 +96,7 @@ def return_weather():
 # data = return_weather()
 label = {}
 label['location'] = tk.Label(window, font=("Arial", 25), text="")
+label['datetime'] = tk.Label(window, font=("Arial", 10), text="")
 label['period_1'] = tk.Label(window, font=("Arial", 18), text="")
 label['period_2'] = tk.Label(window, font=("Arial", 12), text="")
 label['period_3'] = tk.Label(window, font=("Arial", 12), text="")
@@ -103,6 +104,7 @@ label['period_3'] = tk.Label(window, font=("Arial", 12), text="")
 def update_labels():
     data = return_weather()
     label['location'].config(text=f"{data[0]}, {data[1]}")
+    label['datetime'].config(text=f"As of {datetime.datetime.now().strftime("%d/%m/%Y at %H:%M:%S")}")
     label['period_1'].config(text=f"{data[2]['name']}\n\n{data[2]['detailedForecast']}", wraplength=my_geometry-10)
 
     label['period_2'].config(text=f"{data[3]['name']}\n{data[3]['shortForecast']}", wraplength=my_geometry/2-5)
@@ -117,6 +119,7 @@ label['location'].grid(row=0,column=0,columnspan=2,sticky="nsew")
 label['period_1'].grid(row=1,column=0,columnspan=2,sticky="nsew")
 label['period_2'].grid(row=2,column=0,sticky="nsew")
 label['period_3'].grid(row=2,column=1,sticky="nsew")
+label['datetime'].grid(row=3,column=0,columnspan=2,sticky="nsew")
 
 window.grid_columnconfigure((0, 1), weight=1)
 window.grid_rowconfigure((0, 1, 2), weight=1)
