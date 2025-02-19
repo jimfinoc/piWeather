@@ -104,7 +104,9 @@ label['period_3'] = tk.Label(window, font=("Arial", 12), text="")
 def update_labels():
     data = return_weather()
     label['location'].config(text=f"{data[0]}, {data[1]}")
-    label['datetime'].config(text=f"As of {datetime.datetime.now().strftime("%d/%m/%Y at %H:%M:%S")}")
+    mytime = datetime.datetime.now()
+    stringtime = mytime.strftime("%d/%m/%Y at %H:%M:%S")
+    label['datetime'].config(text=f"As of {stringtime}")
     label['period_1'].config(text=f"{data[2]['name']}\n\n{data[2]['detailedForecast']}", wraplength=my_geometry-10)
 
     label['period_2'].config(text=f"{data[3]['name']}\n{data[3]['shortForecast']}", wraplength=my_geometry/2-5)
