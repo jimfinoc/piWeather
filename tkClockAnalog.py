@@ -13,8 +13,15 @@ window.geometry(f"{x_geometry}x{y_geometry}")
 window.title("Analog Clock")
 
 canvas = tk.Canvas(window, width=x_geometry, height=y_geometry)
-canvas.pack()
+# canvas.grid(row=0,column=0,sticky="nsew")
 delay = 100
+
+def center_canvas(canvas, window):
+    window.update_idletasks()
+    width = window.winfo_width()
+    height = window.winfo_height()
+    canvas.place(x=width/2, y=height/2, anchor="center")
+
 
 minuteAngle = 0
 secondAngle = 0
@@ -68,6 +75,12 @@ def update_time(delay):
 
 # label = tk.Label(window, font=("Arial", 80), text="00:00:00")
 # label.pack()
+
+# window.grid_columnconfigure((0,1), weight=1)
+# window.grid_rowconfigure((0), weight=1)
+
+center_canvas(canvas, window)
+window.bind("<Configure>", lambda event: center_canvas(canvas, window))
 
 # update_time()
 update_time(delay)

@@ -122,7 +122,7 @@ label['period_3'].grid(row=2,column=1,sticky="nsew")
 label['datetime'].grid(row=3,column=0,columnspan=2,sticky="nsew")
 
 window.grid_columnconfigure((0, 1), weight=1)
-window.grid_rowconfigure((0, 1, 2), weight=1)
+window.grid_rowconfigure((0, 1, 2,3), weight=1)
     
 window.after(afterTime, update_labels)
 window.mainloop()
