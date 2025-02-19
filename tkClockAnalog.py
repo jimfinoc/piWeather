@@ -14,7 +14,7 @@ window.title("Analog Clock")
 
 canvas = tk.Canvas(window, width=x_geometry, height=y_geometry)
 canvas.pack()
-refresh = 100
+refresh = 1
 
 minuteAngle = 0
 secondAngle = 0
@@ -72,7 +72,7 @@ def update_time():
     # hourLine
     # minuteLine
     # secondLine.config()
-    canvas.coords(bigCircle, cx0, cy0, cx1, cy1)
+    # canvas.coords(bigCircle, cx0, cy0, cx1, cy1)
     # bigCircle = canvas.create_oval(cx0, cy0, cx1, cy1, outline="white", fill="black")
     # Start = canvas.create_oval(lx0-radius, ly0-radius, lx0+radius, ly0+radius, outline="white", fill="white")
     canvas.coords(hourLine,lx0, ly0, hx1, hy1)
