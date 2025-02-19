@@ -14,7 +14,7 @@ window.title("Analog Clock")
 
 canvas = tk.Canvas(window, width=x_geometry, height=y_geometry)
 canvas.pack()
-refresh = 1000
+refresh = 100
 
 minuteAngle = 0
 secondAngle = 0
