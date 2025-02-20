@@ -60,38 +60,42 @@ def return_location():
 
 def return_weather():
     lat,lon = return_location()
-    weatherURL = get_weather_url(lat,lon)
-
-    filename = ".My_weather.json"
-    weather_data = fetch_json(weatherURL)
     try:
-        with open(filename, "w") as file:
-            json.dump(weather_data, file, indent=4)
-        pass
-        # print(f"weatherURL saved to disk at {filename}")
+        weatherURL = get_weather_url(lat,lon)
+
+        filename = ".My_weather.json"
+        weather_data = fetch_json(weatherURL)
+        try:
+            with open(filename, "w") as file:
+                json.dump(weather_data, file, indent=4)
+            pass
+            # print(f"weatherURL saved to disk at {filename}")
+        except:
+            print(f"error writing to file {filename}")
+
+
+        # print("weather_data")
+        # print(weather_data)
+        city = weather_data['properties']['relativeLocation']['properties']['city']
+        state = weather_data['properties']['relativeLocation']['properties']['state']
+        
+        forecast_url = weather_data['properties']['forecast']
+        forecast_data = fetch_json(forecast_url)
+        # print("forecast_data")
+        # print(forecast_data)
+        periods = forecast_data['properties']['periods']    
+        # print()
+        for period in periods[:1]:  # Print details for the first two periods
+            print()
+            print(datetime.datetime.now())
+            print(f"{period['name']}: {period['shortForecast']}")
+            print(f"Temperature: {period['temperature']} {period['temperatureUnit']}")
+            print(f"Wind: {period['windSpeed']} {period['windDirection']}")
+            print(f"Details: {period['detailedForecast']}\n")
+        return (city,state,periods[0],periods[1],periods[2])
     except:
-        print(f"error writing to file {filename}")
-
-
-    # print("weather_data")
-    # print(weather_data)
-    city = weather_data['properties']['relativeLocation']['properties']['city']
-    state = weather_data['properties']['relativeLocation']['properties']['state']
-    
-    forecast_url = weather_data['properties']['forecast']
-    forecast_data = fetch_json(forecast_url)
-    # print("forecast_data")
-    # print(forecast_data)
-    periods = forecast_data['properties']['periods']    
-    # print()
-    for period in periods[:1]:  # Print details for the first two periods
-        print()
-        print(datetime.datetime.now())
-        print(f"{period['name']}: {period['shortForecast']}")
-        print(f"Temperature: {period['temperature']} {period['temperatureUnit']}")
-        print(f"Wind: {period['windSpeed']} {period['windDirection']}")
-        print(f"Details: {period['detailedForecast']}\n")
-    return (city,state,periods[0],periods[1],periods[2])
+        print("Error returning weather")
+        return ("","","","","")
 
 # data = return_weather()
 label = {}
