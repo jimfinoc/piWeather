@@ -18,7 +18,7 @@ pad = 10
 padx = pad
 pady = pad
 window.geometry(f"{x_geometry}x{y_geometry}")
-window.title("Weather Update")
+window.title("Weather Forecast")
 
 def get_weather_url(lat, lon):
     return f"https://api.weather.gov/points/{lat},{lon}"
