@@ -24,11 +24,11 @@ def get_weather_url(lat, lon):
     return f"https://api.weather.gov/points/{lat},{lon}"
 
 def fetch_json(url):
-    print("url")
-    print(url)
+    # print("url")
+    # print(url)
     with urlopen(url) as response:
-        print("response")
-        print(response)
+        # print("response")
+        # print(response)
         return json.loads(response.read())
 
 def return_location():
@@ -37,23 +37,23 @@ def return_location():
     try:
         # print('-try redis database')
         load_dotenv(".env")
-        print ("redis_database_name")
-        print (" ",os.getenv("redis_database_name"))
-        print ("redis_database_port")
-        print (" ",os.getenv("redis_database_port"))
-        print ("redis_database_password")
-        print (" ",os.getenv("redis_database_password"))
+        # print ("redis_database_name")
+        # print (" ",os.getenv("redis_database_name"))
+        # print ("redis_database_port")
+        # print (" ",os.getenv("redis_database_port"))
+        # print ("redis_database_password")
+        # print (" ",os.getenv("redis_database_password"))
         r = redis.Redis(db=0,host=os.getenv("redis_database_name"),port=os.getenv("redis_database_port"),password=os.getenv("redis_database_password"))
         My_location_json_string = r.get('My_location')
         My_location = json.loads(My_location_json_string)
-        print("My_location")
-        print(My_location)
+        # print("My_location")
+        # print(My_location)
         lat = My_location['Lat']
         lon = My_location['Lon']
-        print("lat")
-        print(lat)
-        print("lon")
-        print(lon)
+        # print("lat")
+        # print(lat)
+        # print("lon")
+        # print(lon)
     except:
         pass
     return (lat,lon)
@@ -71,7 +71,8 @@ def return_weather():
             pass
             # print(f"weatherURL saved to disk at {filename}")
         except:
-            print(f"error writing to file {filename}")
+            pass
+            # print(f"error writing to file {filename}")
 
 
         # print("weather_data")
@@ -86,15 +87,17 @@ def return_weather():
         periods = forecast_data['properties']['periods']    
         # print()
         for period in periods[:1]:  # Print details for the first two periods
-            print()
-            print(datetime.datetime.now())
-            print(f"{period['name']}: {period['shortForecast']}")
-            print(f"Temperature: {period['temperature']} {period['temperatureUnit']}")
-            print(f"Wind: {period['windSpeed']} {period['windDirection']}")
-            print(f"Details: {period['detailedForecast']}\n")
+            pass
+            # print()
+            # print(datetime.datetime.now())
+            # print(f"{period['name']}: {period['shortForecast']}")
+            # print(f"Temperature: {period['temperature']} {period['temperatureUnit']}")
+            # print(f"Wind: {period['windSpeed']} {period['windDirection']}")
+            # print(f"Details: {period['detailedForecast']}\n")
         return (city,state,periods[0],periods[1],periods[2])
     except:
-        print("Error returning weather")
+        pass
+        # print("Error returning weather")
         return ("","","","","")
 
 # data = return_weather()
