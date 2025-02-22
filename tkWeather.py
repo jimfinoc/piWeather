@@ -100,14 +100,6 @@ def return_weather():
         # print("Error returning weather")
         return ("","","","","")
 
-# data = return_weather()
-label = {}
-label['location'] = tk.Label(window, font=("Arial", 25), text="")
-label['datetime'] = tk.Label(window, font=("Arial", 10), text="")
-label['period_1'] = tk.Label(window, font=("Arial", 18), text="")
-label['period_2'] = tk.Label(window, font=("Arial", 12), text="")
-label['period_3'] = tk.Label(window, font=("Arial", 12), text="")
-
 def update_labels():
     data = return_weather()
     label['location'].config(text=f"{data[0]}, {data[1]}")
@@ -120,7 +112,14 @@ def update_labels():
     label['period_3'].config(text=f"{data[4]['name']}\n{data[4]['shortForecast']}", wraplength=my_geometry/2-5)
     window.after(afterTime, update_labels) #time to wait in milliseconds
 
-update_labels()
+# data = return_weather()
+label = {}
+label['location'] = tk.Label(window, font=("Arial", 25), text="")
+label['datetime'] = tk.Label(window, font=("Arial", 10), text="")
+label['period_1'] = tk.Label(window, font=("Arial", 18), text="")
+label['period_2'] = tk.Label(window, font=("Arial", 12), text="")
+label['period_3'] = tk.Label(window, font=("Arial", 12), text="")
+
 
 # for key in label:
     # label[key].pack()
@@ -130,8 +129,11 @@ label['period_2'].grid(row=2,column=0,sticky="nsew")
 label['period_3'].grid(row=2,column=1,sticky="nsew")
 label['datetime'].grid(row=3,column=0,columnspan=2,sticky="nsew")
 
+
 window.grid_columnconfigure((0, 1), weight=1)
 window.grid_rowconfigure((0, 1, 2,3), weight=1)
     
-window.after(afterTime, update_labels)
+update_labels()
+
+# window.after(afterTime, update_labels)
 window.mainloop()
