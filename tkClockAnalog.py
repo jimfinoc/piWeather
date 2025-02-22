@@ -44,10 +44,10 @@ hy1 = cy0
 
 radius = 7.5
 bigCircle = canvas.create_oval(cx0, cy0, cx1, cy1, outline="white", fill="black")
-Start = canvas.create_oval(lx0-radius, ly0-radius, lx0+radius, ly0+radius, outline="white", fill="white")
-hourLine = canvas.create_line(lx0, ly0, hx1, hy1, width=radius*2, fill="white")
-minuteLine = canvas.create_line(lx0, ly0, mx1, my1, width=radius, fill="white")
-secondLine = canvas.create_line(lx0, ly0, sx1, sy1, width=radius/3, fill="red")
+# Start = canvas.create_oval(lx0-radius, ly0-radius, lx0+radius, ly0+radius, outline="white", fill="white")
+hourLine = canvas.create_line(lx0, ly0, hx1, hy1, width=radius*2, fill="white",capstyle=tk.ROUND)
+minuteLine = canvas.create_line(lx0, ly0, mx1, my1, width=radius*4/3, fill="gray",capstyle=tk.ROUND)
+secondLine = canvas.create_line(lx0, ly0, sx1, sy1, width=radius/3, fill="red",capstyle=tk.ROUND)
 
 
 def update_time(delay):
@@ -63,8 +63,8 @@ def update_time(delay):
     sx1 = lx0 + (my_geometry/2-pad*5) * math.cos(-secondAngle)# Ending coordinates
     sy1 = ly0 + (my_geometry/2-pad*5) * math.sin(-secondAngle) # Ending coordinates
     hourAngle = math.pi/2 - 2*math.pi*((hour + (( minute + second/60 ) / 60))/12)
-    hx1 = lx0 + 3/4*(my_geometry/2-pad*2) * math.cos(-hourAngle)# Ending coordinates
-    hy1 = ly0 + 3/4*(my_geometry/2-pad*2) * math.sin(-hourAngle) # Ending coordinates
+    hx1 = lx0 + 5/8*(my_geometry/2-pad*2) * math.cos(-hourAngle)# Ending coordinates
+    hy1 = ly0 + 5/8*(my_geometry/2-pad*2) * math.sin(-hourAngle) # Ending coordinates
 
     canvas.coords(hourLine,lx0, ly0, hx1, hy1)
     canvas.coords(minuteLine,lx0, ly0, mx1, my1)
