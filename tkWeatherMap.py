@@ -158,7 +158,8 @@ import urllib.request
 import tkinter as tk
 from PIL import Image, ImageTk
 
-def load_and_center_gif(canvas, gif_path):
+def load_and_center_gif(canvas, delay):
+    gif_path = "https://graphical.weather.gov/GraphicalNDFD.php?width=515&timezone=PST&sector=CONUS&element=t&n=5"
     """Loads a GIF image onto the canvas and centers it."""
     try:
         response = requests.get(gif_path, stream=True)
@@ -168,7 +169,7 @@ def load_and_center_gif(canvas, gif_path):
         
         photo_img = ImageTk.PhotoImage(img)
         canvas.image = photo_img  # Keep a reference to prevent garbage collection
-
+        print("This should be deleting the old image")
         img_width = photo_img.width()
         img_height = photo_img.height()
         canvas_width = canvas.winfo_width()
@@ -177,17 +178,26 @@ def load_and_center_gif(canvas, gif_path):
         x = (canvas_width - img_width) // 2
         y = (canvas_height - img_height) // 2
 
-        canvas.create_image(x, y, anchor=tk.NW, image=photo_img)
+        # try:
+        #     print("trying to delete old image")
+        #     canvas.delete(drawn_image)
+        #     print(" old image deleted")
+        # except:
+        #     print(" cannot delete image")
+
+        drawn_image = canvas.create_image(x, y, anchor=tk.NW, image=photo_img)
 
     except FileNotFoundError:
         print(f"Error: Image file not found at {gif_path}")
     except Exception as e:
         print(f"An error occurred: {e}")
+    root.after(delay,load_and_center_gif,canvas,delay)
 
-def on_resize(event, canvas, gif_path):
+
+def on_resize(event, canvas,delay):
     """Handles canvas resize events and re-centers the image."""
     canvas.delete("all")  # Clear the canvas
-    load_and_center_gif(canvas, gif_path)
+    load_and_center_gif(canvas, delay)
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -197,11 +207,11 @@ if __name__ == "__main__":
     canvas_height = 400
     canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg="white")
     canvas.pack(fill=tk.BOTH, expand=tk.YES)
-
-    gif_path = "https://graphical.weather.gov/GraphicalNDFD.php?width=515&timezone=PST&sector=CONUS&element=t&n=5"
+    # delay = 10000
+    delay = 30*60*1000
     # gif_path = "downloaded_image.gif"  # Replace with the actual path to your GIF file
-    load_and_center_gif(canvas, gif_path)
+    load_and_center_gif(canvas, delay)
 
    # Bind the resize event to the window
-    root.bind("<Configure>", lambda event: on_resize(event, canvas, gif_path))
+    root.bind("<Configure>", lambda event: on_resize(event, canvas, delay))
     root.mainloop()
