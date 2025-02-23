@@ -201,7 +201,7 @@ def on_resize(event, canvas,delay):
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Centered GIF Example")
+    root.title("Weather Map")
 
     canvas_width = 600
     canvas_height = 400
