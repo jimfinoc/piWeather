@@ -10,14 +10,14 @@ import os
 
 
 window = tk.Tk()
-my_geometry = 375
+my_geometry = 720
 afterTime = 5 * 60 * 1000 # time is in milliseconds
 x_geometry = my_geometry
 y_geometry = my_geometry
 pad = 10
 padx = pad
 pady = pad
-window.geometry(f"{x_geometry}x{y_geometry}")
+window.geometry(f"{x_geometry}x{y_geometry}+375+0")
 window.title("Weather Forecast")
 
 def get_weather_url(lat, lon):
@@ -101,24 +101,26 @@ def return_weather():
         return ("","","","","")
 
 def update_labels():
-    data = return_weather()
-    label['location'].config(text=f"{data[0]}, {data[1]}")
-    mytime = datetime.datetime.now()
-    stringtime = mytime.strftime("%d/%m/%Y at %H:%M:%S")
-    label['datetime'].config(text=f"As of {stringtime}")
-    label['period_1'].config(text=f"{data[2]['name']}\n\n{data[2]['detailedForecast']}", wraplength=my_geometry-10)
+    try:
+        data = return_weather()
+        label['location'].config(text=f"{data[0]}, {data[1]}")
+        mytime = datetime.datetime.now()
+        stringtime = mytime.strftime("%d/%m/%Y at %H:%M:%S")
+        label['datetime'].config(text=f"As of {stringtime}")
+        label['period_1'].config(text=f"{data[2]['name']}\n\n{data[2]['detailedForecast']}", wraplength=my_geometry-10)
 
-    label['period_2'].config(text=f"{data[3]['name']}\n{data[3]['shortForecast']}", wraplength=my_geometry/2-5)
-    label['period_3'].config(text=f"{data[4]['name']}\n{data[4]['shortForecast']}", wraplength=my_geometry/2-5)
-    window.after(afterTime, update_labels) #time to wait in milliseconds
-
+        label['period_2'].config(text=f"{data[3]['name']}\n{data[3]['shortForecast']}", wraplength=my_geometry/2-5)
+        label['period_3'].config(text=f"{data[4]['name']}\n{data[4]['shortForecast']}", wraplength=my_geometry/2-5)
+        window.after(afterTime, update_labels) #time to wait in milliseconds
+    except:
+        pass
 # data = return_weather()
 label = {}
 label['location'] = tk.Label(window, font=("Arial", 25), text="")
-label['datetime'] = tk.Label(window, font=("Arial", 10), text="")
+label['datetime'] = tk.Label(window, font=("Arial", 15), text="")
 label['period_1'] = tk.Label(window, font=("Arial", 18), text="")
-label['period_2'] = tk.Label(window, font=("Arial", 12), text="")
-label['period_3'] = tk.Label(window, font=("Arial", 12), text="")
+label['period_2'] = tk.Label(window, font=("Arial", 15), text="")
+label['period_3'] = tk.Label(window, font=("Arial", 15), text="")
 
 
 # for key in label:
