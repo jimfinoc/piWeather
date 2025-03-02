@@ -8,7 +8,7 @@ def update_time():
 
 window = tk.Tk()
 window.geometry("375x300")
-window.title("Digital Clock")
+window.title("Date Time")
 
 label = tk.Label(window, font=("Arial", 30), text="00:00:00")
 label.grid(column=0,row=0)
